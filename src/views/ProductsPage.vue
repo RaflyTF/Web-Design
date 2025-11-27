@@ -93,28 +93,38 @@
 
             <!-- Product Info -->
             <div class="p-6">
-              <h3 class="text-xl font-serif font-normal text-gold mb-2">{{ product.name }}</h3>
+              <router-link 
+                :to="`/products/${product.id}`"
+                class="block hover:text-champagne transition-colors"
+              >
+                <h3 class="text-xl font-serif font-normal text-gold mb-2 hover:text-champagne transition-colors">{{ product.name }}</h3>
+              </router-link>
               
-              <!-- Rating Stars -->
+              <!-- Rating Stars with Font Awesome -->
               <div class="flex items-center gap-1 mb-3">
-                <svg v-for="i in 5" :key="i" class="h-4 w-4" :class="i <= product.rating ? 'text-gold' : 'text-gray-600'" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+                <i v-for="i in 5" :key="i" class="fas fa-star text-sm" :class="i <= product.rating ? 'text-gold' : 'text-gray-600'"></i>
                 <span class="text-cream/60 text-sm ml-1">({{ product.reviews }})</span>
               </div>
               
               <p class="text-cream/70 text-sm mb-4 line-clamp-2">{{ product.description }}</p>
               <p class="text-xl font-normal text-cream mb-4">{{ product.price }}</p>
               
-              <button 
-                @click="addToCart(product)"
-                class="w-full bg-champagne hover:bg-gold text-dark py-3 rounded-2xl font-normal text-base flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-lg hover:shadow-gold/20 hover:scale-105 active:scale-95"
-              >
-                <span>Add to cart</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                </svg>
-              </button>
+              <div class="flex gap-2">
+                <button 
+                  @click="addToCart(product)"
+                  class="flex-1 bg-champagne hover:bg-gold text-dark py-3 rounded-2xl font-normal text-base flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-lg hover:shadow-gold/20 hover:scale-105 active:scale-95"
+                >
+                  <span>Add to cart</span>
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+                <router-link
+                  :to="`/products/${product.id}`"
+                  class="bg-dark border border-gold/20 hover:bg-gold hover:text-dark text-gold px-4 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-105"
+                  title="View Details"
+                >
+                  <i class="fas fa-eye"></i>
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
